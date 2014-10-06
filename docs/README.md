@@ -13,6 +13,7 @@ Application
   - [Virtualization](41-virtualization.md)
   - [Replication](42-replication.md)
   - [Upgrading](43-upgrading.md)
+- [Deploying](50-deploy.md)
 
 Core
 ----
