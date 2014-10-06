@@ -91,6 +91,11 @@ class AppController extends BaseAppController
         );
         $this->promptUpdateConfigurationValue(
             'common/config/params.php',
+            'params.adminDefaultPassword',
+            'Webmaster default account password'
+        );
+        $this->promptUpdateConfigurationValue(
+            'common/config/params.php',
             'params.supportEmail',
             'Support e-mail address'
         );
@@ -176,15 +181,21 @@ class AppController extends BaseAppController
      */
     public function actionAdminUser()
     {
-        $email    = $this->prompt('E-Mail for application admin user:', ['required' => true]);
-        $password = $this->prompt(
-            'Password for application admin user (leave empty if you want to use the auto-generated value):'
-        );
-        $this->action('user/create', [$email, 'admin']);
-        if ($password) {
-            $this->action('user/password', ['admin', $password]);
+        if ($this->interactive) {
+            $email    = $this->prompt('E-Mail for application admin user:', ['required' => true]);
+            $password = $this->prompt(
+                'Password for application admin user (leave empty if you want to use the auto-generated value):'
+            );
+            $this->action('user/create', [$email, 'admin']);
+            if ($password) {
+                $this->action('user/password', ['admin', $password]);
+            }
+            $this->action('user/confirm', ['admin']);
+        } else {
+            $this->action('user/create', [\Yii::$app->params['adminEmail'], 'admin']);
+            $this->action('user/password', ['admin', \Yii::$app->params['adminDefaultPassword']]);
+            $this->action('user/confirm', ['admin']);
         }
-        $this->action('user/confirm', ['admin']);
     }
 
     /**

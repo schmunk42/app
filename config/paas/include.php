@@ -13,8 +13,12 @@ Config::expect("YII_ENV", $default = 'paas', $required = false);
 // ==== Identity-related config ====
 
 Config::expect("APP_NAME", $default = '[paas] Phundament 4', $required = false);
-Config::expect("ADMIN_EMAIL", $default = 'admin+paas@h17n.de', $required = false);
 Config::expect("SUPPORT_EMAIL", $default = 'support+paas@h17n.de', $required = false);
+
+// ==== Admin user details ====
+
+Config::expect("ADMIN_EMAIL", $default = 'admin+paas@h17n.de', $required = false);
+Config::expect("ADMIN_DEFAULT_PASSWORD", $default = 'admin123', $required = false);
 
 // ==== Infrastructure-related config ====
 

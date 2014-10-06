@@ -1,5 +1,9 @@
 <?php
 
+// Admin password
+
+$_ENV["ADMIN_PASSWORD"] = "admin123";
+
 // Database credentials
 
 $_ENV["DATABASE_SCHEME"] = "mysql";
