@@ -4,19 +4,21 @@ Deploy
 Platform as a Service (Paas)
 --------------------------------------
 
-Most Paas providers will expect your environment configuration to be based on environment variables.
+## Step 1 - Start using environment configuration based on environment variables
 
-To enable this, you need to make sure that your buildpack executes the following during the build/compile stage:
+Most Paas providers will expect your environment configuration to be based on environment variables, and Phundament 4's PaaS deployment scripts will activate this during the build/compile process in your PaaS provider.
 
-```
-./init --env="Environment configuration based on environment variables"
-```
-
-This will activate a application configuration that uses [php-app-config](https://github.com/neam/php-app-config). Read it's readme to understand how it works and how you can use it locally as well as in PaaS deployments. At the very least read the instructions under "Platform as a Service" to understand what config is necessary to set for your PaaS app/deployment.
-
-For troubleshooting, activate environment configuration based on environment variables locally in your Phundament 4 app:
+To anticipate problems during development with this approach, you are recommended to activate environment configuration based on environment variables locally in your Phundament 4 app:
 
 ```
 cp config/local/secrets.dist.php config/local/secrets.php
 ./init --env="Environment configuration based on environment variables"
 ```
+
+This will activate a application configuration that uses [php-app-config](https://github.com/neam/php-app-config). Read it's readme to understand how it works and how you can use it locally as well as in PaaS deployments.
+
+## Step 2 - Deploy
+
+The basic approach is that you will push the code to a git remote at your PaaS provider, and they will use the "heroku" metadata in composer.json to build a fully working virtual machine running the application.
+
+

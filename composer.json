@@ -10,6 +10,9 @@
             "name": "Tobias Munk",
             "email": "schmunk@usrbin.de",
             "homepage": "http://www.phundament.com"
+        },
+        {
+            "name": "Open Source Community"
         }
     ],
     "support": {
@@ -54,6 +57,28 @@
         "asset-installer-paths": {
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
+        },
+        "heroku": {
+            "engines": {
+                "php": "5.5.15",
+                "nginx": "1.4.4"
+            },
+            "php-config": [
+                "error_reporting=E_ALL",
+                "html_errors=on",
+                "display_errors=on",
+                "short_open_tag=on"
+            ],
+            "index-document": "index.php",
+            "document-root": "frontend/web",
+            "compile": [
+                "bash app-buildstep-hook.sh $BUILD_DIR $CACHE_DIR $basedir"
+            ],
+            "log-files": [
+                "backend/runtime/logs/app.log",
+                "frontend/runtime/logs/app.log",
+                "console/runtime/logs/app.log"
+            ]
         }
     }
 }
