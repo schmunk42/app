@@ -29,6 +29,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "dektrium/yii2-user": "dev-master",
         "neam/php-app-config": "dev-develop",
+        "neam/yii-dna-deployment": "dev-develop",
         "dmstr/yii2-migrate-command": "dev-master",
         "schmunk42/yii2-packaii": "dev-master",
         "dmstr/yii2-adminlte-asset": "dev-master"
@@ -59,6 +60,7 @@
             "bower-asset-library": "vendor/bower"
         },
         "heroku": {
+            "framework": "yii-dna",
             "engines": {
                 "php": "5.5.15",
                 "nginx": "1.4.4"
@@ -71,6 +73,18 @@
             ],
             "index-document": "index.php",
             "document-root": "frontend/web",
+            "nginx-includes": [
+                "vendor/neam/yii-dna-deployment/nginx-buildpack-custom-configuration.conf"
+            ],
+            "nginx-locations": [
+                {
+                    "location": "/backend/",
+                    "document-root": "backend/web",
+                    "nginx-includes": [
+                        "vendor/neam/yii-dna-deployment/nginx-buildpack-custom-configuration.conf"
+                    ]
+                }
+            ],
             "compile": [
                 "bash app-buildstep-hook.sh $BUILD_DIR $CACHE_DIR $basedir"
             ],
