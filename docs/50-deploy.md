@@ -76,3 +76,36 @@ To update a dokku deployment, push to it's dokku repository:
 
     git push dokku@$DOKKU_HOST:$APPNAME $CURRENT_BRANCH:master
 
+To reset the db to a clean state:
+
+    export DATA=clean-db
+    # run these commands one by one (they will not all run if pasted into the console together)
+    ssh dokku@$DOKKU_HOST config:set $APPNAME DATA=$DATA
+    # run these commands one by one (they will not all run if pasted into the console together)
+    ssh dokku@$DOKKU_HOST run $APPNAME bash /app/vendor/neam/yii-dna-deployment/dokku-reset-db.sh
+
+To reset the db and load user data:
+
+    export DATA=user-generated
+    # run these commands one by one (they will not all run if pasted into the console together)
+    ssh dokku@$DOKKU_HOST config:set $APPNAME DATA=$DATA
+    # run these commands one by one (they will not all run if pasted into the console together)
+    ssh dokku@$DOKKU_HOST run $APPNAME bash /app/vendor/neam/yii-dna-deployment/dokku-reset-db.sh
+
+To run the tests:
+
+    # needs to be set appropriately (see above in readme)
+    export COVERAGE=basic
+
+    # use ci-configuration for deployment while running tests
+    ssh dokku@$DOKKU_HOST config:set $APPNAME CONFIG_ENVIRONMENT=ci
+
+    # run tests within a dokku app container
+    ssh dokku@$DOKKU_HOST run $APPNAME /app/deploy/dokku-run-tests.sh $COVERAGE
+
+    # restore config-environment
+    ssh dokku@$DOKKU_HOST config:set $APPNAME CONFIG_ENVIRONMENT=$CMS_CONFIG_ENVIRONMENT
+
+To upload the current user-generated data to S3, run:
+
+    ssh dokku@$DOKKU_HOST run $APPNAME /app/shell-scripts/upload-user-data-backup.sh
