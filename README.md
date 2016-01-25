@@ -181,4 +181,4 @@ Resources
  *  [Google+](https://plus.google.com/114873431066202526630)
 
 
-<img src="http://t.phundament.com/dmstr-32-bw.png"> Built by dmstr
+<img src="http://t.phundament.com/dmstr-16-bw.png"> Built by dmstr
