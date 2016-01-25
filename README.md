@@ -179,3 +179,6 @@ Resources
  *  [Twitter](http://twitter.com/#!/phundament)
  *  [Facebook](http://www.facebook.com/phundament)
  *  [Google+](https://plus.google.com/114873431066202526630)
+
+
+<img src="http://t.phundament.com/dmstr-32-bw.png"> Built by dmstr
